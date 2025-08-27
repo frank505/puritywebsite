@@ -92,6 +92,17 @@ jobs:
             npm run build
           "
 
+      - name: Start Application
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o IdentitiesOnly=yes ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }} "
+            cd /opt/purity-app
+            # Kill any existing process on port 3059
+            pkill -f 'next.*3059' || true
+            # Start the application on port 3059
+            nohup npm start -- -p 3059 > /dev/null 2>&1 &
+            echo 'Application started on port 3059'
+          "
+
       - name: Cleanup
         if: always()
         run: |
