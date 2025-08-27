@@ -80,12 +80,17 @@ jobs:
             cd /opt/purity-app
             tar -xzf deploy.tar.gz
             rm deploy.tar.gz
-            npm ci --production
-            npm run build
           "
 
-          # Copy environment file after build
+          # Copy environment file before build
           scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.env
+
+          # Install dependencies and build
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o IdentitiesOnly=yes ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }} "
+            cd /opt/purity-app
+            npm ci
+            npm run build
+          "
 
       - name: Cleanup
         if: always()
