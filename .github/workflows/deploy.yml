@@ -75,39 +75,17 @@ jobs:
           PUBLIC_PATH=/opt/purity-app/public
           EOF
 
-          # Create required directories on remote
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o IdentitiesOnly=yes ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }} "
-            mkdir -p /opt/purity-app/scripts
-            mkdir -p /opt/purity-app/.next/standalone
-            mkdir -p /opt/purity-app/app
-          "
-
-          # Copy deploy script
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no scripts/deploy.sh ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/scripts/
-
-          # Copy environment file for production
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.env
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.next/standalone/.env
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/app/.env
-
-          # Copy environment file for production
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.env.production
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.next/standalone/.env.production
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/app/.env.production
-
-          # Copy environment file for local development
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.env.local
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.next/standalone/.env.local
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/app/.env.local
-
-          # Copy deployment files
-          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no deploy.tar.gz ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/
-
-          # Execute deployment script
+          # Extract and deploy the application
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o IdentitiesOnly=yes ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }} "
             cd /opt/purity-app
-            chmod +x scripts/deploy.sh && ./scripts/deploy.sh
+            tar -xzf deploy.tar.gz
+            rm deploy.tar.gz
+            npm ci --production
+            npm run build
           "
+
+          # Copy environment file after build
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.env
 
       - name: Cleanup
         if: always()
