@@ -96,12 +96,46 @@ jobs:
         run: |
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o IdentitiesOnly=yes ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }} "
             cd /opt/purity-app
-            # Kill any existing process on port 3059
-            pkill -f 'next.*3059' || true
-            # Start the application on port 3059
-            nohup npm start -- -p 3059 > /dev/null 2>&1 &
-            echo 'Application started on port 3059'
+            
+            # Check for PM2 installation
+            if ! command -v pm2 &> /dev/null; then
+              echo 'PM2 not found, installing PM2...'
+              sudo npm install -g pm2
+            fi
+            
+            # Stop existing application if running
+            if pm2 list | grep -q 'purity-app'; then
+              echo 'Stopping existing application instance...'
+              pm2 stop purity-app
+              pm2 delete purity-app
+            fi
+            
+            # Start the Next.js application with PM2
+            echo 'Starting Next.js application with PM2 on port 3059...'
+            pm2 start npm --name 'purity-app' -- start -- -p 3059
+            
+            # Save PM2 process list
+            pm2 save
+            
+            # Setup PM2 to start on system boot
+            sudo env PATH=\$PATH:/usr/bin pm2 startup systemd -u \$USER --hp \$HOME || true
+            
+            echo 'Application started successfully on port 3059'
           "
+
+      - name: Verify deployment
+        run: |
+          echo "Verifying deployment..."
+          for i in {1..5}; do
+            if curl -s -f "http://${{ secrets.HETZNER_HOST }}:3059" > /dev/null; then
+              echo "Deployment verified successfully"
+              exit 0
+            fi
+            echo "Waiting for service to be ready... (attempt $i/5)"
+            sleep 10
+          done
+          echo "Failed to verify deployment"
+          exit 1
 
       - name: Cleanup
         if: always()
