@@ -1,0 +1,119 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Install expect
+        run: sudo apt-get install -y expect    
+
+      - name: Setup SSH directory
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.HETZNER_HOST }} >> ~/.ssh/known_hosts
+          # Write the private key and remove its passphrase
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key_with_pass
+          chmod 600 ~/.ssh/deploy_key_with_pass
+          # Remove passphrase from the key
+          ssh-keygen -p -P "${{ secrets.SSH_PASSPHRASE }}" -N "" -f ~/.ssh/deploy_key_with_pass
+          mv ~/.ssh/deploy_key_with_pass ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "SSH directory setup complete"
+
+      - name: Test SSH Connection
+        run: |
+          ssh -v -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o IdentitiesOnly=yes ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }} "echo 'SSH connection successful'"
+
+      - name: Prepare Deployment Files
+        run: |
+          # Create temporary directory for deployment files
+          mkdir -p deploy_temp
+          
+          # Copy project files to temporary directory
+          rsync -av --exclude='.git' \
+                    --exclude='node_modules' \
+                    --exclude='.next' \
+                    --exclude='.env' \
+                    --exclude='.env.*' \
+                    --exclude='deploy_temp' \
+                    --exclude='deploy.tar.gz' \
+                    . deploy_temp/
+
+          # Create tar archive
+          cd deploy_temp && tar -czf ../deploy.tar.gz .
+          cd ..
+
+      - name: Create Remote Directory
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o IdentitiesOnly=yes ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }} "
+            sudo mkdir -p /opt/purity-app
+            sudo chown -R \$USER:\$USER /opt/purity-app
+          "
+
+      - name: Copy Files
+        run: |
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no deploy.tar.gz ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/
+   
+      - name: Deploy Application
+        run: |
+          # Create environment file locally
+          cat > env_temp << EOF
+          NEXT_PUBLIC_APP_URL=${{ secrets.NEXT_PUBLIC_APP_URL }}
+          PUBLIC_PATH=/opt/purity-app/public
+          EOF
+
+          # Create required directories on remote
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o IdentitiesOnly=yes ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }} "
+            mkdir -p /opt/purity-app/scripts
+            mkdir -p /opt/purity-app/.next/standalone
+            mkdir -p /opt/purity-app/app
+          "
+
+          # Copy deploy script
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no scripts/deploy.sh ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/scripts/
+
+          # Copy environment file for production
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.env
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.next/standalone/.env
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/app/.env
+
+          # Copy environment file for production
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.env.production
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.next/standalone/.env.production
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/app/.env.production
+
+          # Copy environment file for local development
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.env.local
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/.next/standalone/.env.local
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no env_temp ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/app/.env.local
+
+          # Copy deployment files
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no deploy.tar.gz ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }}:/opt/purity-app/
+
+          # Execute deployment script
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o IdentitiesOnly=yes ${{ secrets.HETZNER_USERNAME }}@${{ secrets.HETZNER_HOST }} "
+            cd /opt/purity-app
+            chmod +x scripts/deploy.sh && ./scripts/deploy.sh
+          "
+
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -rf deploy_temp
+          rm -f deploy.tar.gz
+          rm -f env_temp
+          rm -f ~/.ssh/deploy_key
+          rm -f ~/.ssh/deploy_key_with_pass
