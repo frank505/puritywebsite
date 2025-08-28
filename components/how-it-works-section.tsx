@@ -29,17 +29,12 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold font-display mb-6">
-            How PURITY Helps You Overcome
-            <br />
-            <span className="gradient-text">Porn Addiction</span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Our proven 4-step system combines faith-based accountability with cutting-edge technology to help you break
-            free permanently.
+    <section id="how-it-works" className="py-24 bg-white/95">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">How It Works</h2>
+          <p className="text-xl text-gray-600">
+            Simple steps to start your journey towards freedom and healing.
           </p>
         </div>
 
@@ -62,8 +57,8 @@ export default function HowItWorksSection() {
               </div>
 
               <div className="flex-1 text-center lg:text-left">
-                <h3 className="text-3xl md:text-4xl font-bold font-display mb-6">{step.title}</h3>
-                <p className="text-xl text-gray-300 leading-relaxed">{step.description}</p>
+                <h3 className="text-3xl font-bold text-gray-900 mb-4">{step.title}</h3>
+                <p className="text-lg text-gray-600 leading-relaxed">{step.description}</p>
               </div>
             </div>
           ))}
