@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
-import { Apple, Play } from "lucide-react"
+import Image from "next/image"
 
 export default function BenefitsSection() {
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -75,20 +75,32 @@ export default function BenefitsSection() {
 
             {/* Download Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button className="bg-white text-black hover:bg-gray-100 px-6 py-3 rounded-xl font-semibold flex items-center gap-3">
-                <Apple className="w-6 h-6" />
-                <div className="text-left">
-                  <div className="text-xs">Download on the</div>
-                  <div className="text-sm font-bold">App Store</div>
-                </div>
-              </Button>
-              <Button className="bg-white text-black hover:bg-gray-100 px-6 py-3 rounded-xl font-semibold flex items-center gap-3">
-                <Play className="w-6 h-6" />
-                <div className="text-left">
-                  <div className="text-xs">Get it on</div>
-                  <div className="text-sm font-bold">Google Play</div>
-                </div>
-              </Button>
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105"
+                aria-label="Download on the App Store"
+              >
+                <Image
+                  src="/app-store-badge.svg"
+                  alt="Download on the App Store"
+                  width={140}
+                  height={42}
+                  className="h-10 w-auto"
+                />
+              </a>
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105"
+                aria-label="Get it on Google Play"
+              >
+                <Image
+                  src="/google-play-badge.svg"
+                  alt="Get it on Google Play"
+                  width={140}
+                  height={42}
+                  className="h-10 w-auto"
+                />
+              </a>
             </div>
           </div>
 

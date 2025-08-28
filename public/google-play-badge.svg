@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="54" viewBox="0 0 180 54">
+  <defs>
+    <linearGradient id="a" x1="50%" x2="50%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#3d3d3d"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </linearGradient>
+    <linearGradient id="b" x1="0%" x2="100%" y1="0%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#0099cc"/>
+    </linearGradient>
+    <linearGradient id="c" x1="0%" x2="100%" y1="0%" y2="0%">
+      <stop offset="0%" stop-color="#ff5722"/>
+      <stop offset="100%" stop-color="#e91e63"/>
+    </linearGradient>
+    <linearGradient id="d" x1="0%" x2="100%" y1="0%" y2="0%">
+      <stop offset="0%" stop-color="#ffeb3b"/>
+      <stop offset="100%" stop-color="#ffc107"/>
+    </linearGradient>
+    <linearGradient id="e" x1="0%" x2="100%" y1="0%" y2="0%">
+      <stop offset="0%" stop-color="#4caf50"/>
+      <stop offset="100%" stop-color="#2e7d32"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="180" height="54" fill="url(#a)" rx="8"/>
+    <rect width="176" height="50" x="2" y="2" fill="none" stroke="#a6a6a6" stroke-width=".5" rx="6"/>
+    
+    <!-- Google Play icon -->
+    <g transform="translate(15, 13)">
+      <path d="M0 0v28l14-14L0 0z" fill="url(#b)"/>
+      <path d="M0 28l14-14 7 7-21 7z" fill="url(#c)"/>
+      <path d="M0 0l21 7-7 7L0 0z" fill="url(#d)"/>
+      <path d="M14 14l7-7v14l-7-7z" fill="url(#e)"/>
+    </g>
+    
+    <!-- Text -->
+    <g fill="#fff">
+      <text x="44" y="16" font-family="Roboto, Arial, sans-serif" font-size="8" font-weight="300">
+        GET IT ON
+      </text>
+      <text x="44" y="31" font-family="Roboto, Arial, sans-serif" font-size="16" font-weight="400">
+        Google Play
+      </text>
+    </g>
+  </g>
+</svg>

@@ -1,4 +1,5 @@
-import { Shield, Heart, Mail, Phone } from "lucide-react"
+import { Heart, Mail, Phone } from "lucide-react"
+import Image from "next/image"
 
 export function Footer() {
   return (
@@ -6,12 +7,15 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <Shield className="h-8 w-8 text-purple-500" />
-              <div>
-                <h3 className="text-xl font-bold font-display text-white">PURITY</h3>
-                <p className="text-sm text-gray-400">Find Freedom & Healing</p>
-              </div>
+            <div className="flex items-center mb-6">
+              <Image 
+                src="/final_form_image_101_cropped_to_be_used.png" 
+                alt="Purity App Logo" 
+                width={300} 
+                height={300} 
+                className="h-16 w-auto object-contain"
+                priority
+              />
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
               Empowering Christians to overcome pornography addiction through faith-based support, community
