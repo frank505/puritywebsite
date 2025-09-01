@@ -11,22 +11,43 @@ export function HeroSection() {
           {/* Left side - Content */}
           <div className="text-center lg:text-left">
             <h1 className="text-5xl lg:text-7xl font-bold font-display mb-6 leading-tight">
-              Quit Porn For Life
+              Break Free & Live Pure
               <br />
               With <span className="gradient-text">PURITY</span>
             </h1>
 
-            <div className="mb-8 p-6 bg-red-900/20 border border-red-500/30 rounded-2xl backdrop-blur-sm">
-              <p className="text-2xl font-bold text-red-400 mb-2">1 in 3 men are addicted to porn</p>
+            <div className="mb-8 p-6 bg-gradient-to-r from-purple-900/20 to-pink-900/20 border border-purple-500/30 rounded-2xl backdrop-blur-sm">
+              <p className="text-2xl font-bold text-purple-400 mb-2">Transform Your Life Today</p>
               <p className="text-gray-300 text-lg">
-                Leading to decreased motivation, anxiety, dopamine imbalance, and dysfunction in young men.
+                Discover freedom, purpose, and the life God intended for you through faith-based recovery.
               </p>
             </div>
 
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Join over 50,000+ Christians who have broken free from pornography addiction. We use faith and science to
-              help you stop this addiction through our accountability platform and supportive community.
+              Experience lasting freedom from pornography addiction through our comprehensive platform that combines 
+              <span className="text-blue-400 font-semibold"> proven accountability methods</span> with 
+              <span className="text-purple-400 font-semibold"> biblical foundation</span> for complete transformation.
             </p>
+
+            {/* Key Features Highlights */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+              <div className="text-center p-3 bg-white/5 rounded-xl border border-white/10">
+                <div className="text-2xl mb-1">🚨</div>
+                <div className="text-xs text-gray-300">Panic Button</div>
+              </div>
+              <div className="text-center p-3 bg-white/5 rounded-xl border border-white/10">
+                <div className="text-2xl mb-1">🤖</div>
+                <div className="text-xs text-gray-300">AI Support</div>
+              </div>
+              <div className="text-center p-3 bg-white/5 rounded-xl border border-white/10">
+                <div className="text-2xl mb-1">👥</div>
+                <div className="text-xs text-gray-300">Community</div>
+              </div>
+              <div className="text-center p-3 bg-white/5 rounded-xl border border-white/10">
+                <div className="text-2xl mb-1">✝️</div>
+                <div className="text-xs text-gray-300">Faith-Based</div>
+              </div>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <a 

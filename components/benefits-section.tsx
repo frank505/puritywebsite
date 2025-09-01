@@ -29,12 +29,23 @@ export default function BenefitsSection() {
 
   const benefits = [
     "Increased testosterone",
-    "Prevent Erectile Dysfunction",
+    "Prevent Erectile Dysfunction", 
     "Increased Energy",
     "Increased Motivation",
     "Improved Focus",
     "Improved Relationships",
     "Increased Confidence",
+    "Better Sleep Quality",
+    "Enhanced Mental Clarity",
+    "Stronger Faith Connection",
+    "Reduced Anxiety",
+    "Improved Self-Control",
+    "Better Communication Skills",
+    "Increased Productivity",
+    "Healthier Intimacy",
+    "Greater Life Purpose",
+    "Stronger Family Bonds",
+    "Enhanced Emotional Stability"
   ]
 
   // Triple the benefits for seamless loop
@@ -60,16 +71,16 @@ export default function BenefitsSection() {
 
             <div className="grid grid-cols-3 gap-6 py-6">
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400">94%</div>
+                <div className="text-3xl font-bold text-purple-400">92%</div>
                 <div className="text-sm text-gray-400">Success Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-pink-400">50,000+</div>
+                <div className="text-3xl font-bold text-pink-400">1.7M+</div>
                 <div className="text-sm text-gray-400">Lives Changed</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400">85%</div>
-                <div className="text-sm text-gray-400">Stay Clean 90+ Days</div>
+                <div className="text-3xl font-bold text-blue-400">84%</div>
+                <div className="text-sm text-gray-400">Report Life Improvement</div>
               </div>
             </div>
 

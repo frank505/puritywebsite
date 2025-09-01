@@ -6,7 +6,6 @@ import StatsSection from "@/components/stats-section"
 import FeaturesSection from "@/components/features-section"
 import BenefitsSection from "@/components/benefits-section"
 import HowItWorksSection from "@/components/how-it-works-section"
-import ComingSoonSection from "@/components/coming-soon-section"
 import InfluencersSection from "@/components/influencers-section"
 import CTASection from "@/components/cta-section"
 
@@ -20,7 +19,6 @@ export default function HomePage() {
       <BenefitsSection />
       <TestimonialsSection />
       <HowItWorksSection />
-      <ComingSoonSection />
       <InfluencersSection />
       <CTASection />
       <Footer />
