@@ -3,108 +3,122 @@ import { Badge } from "@/components/ui/badge"
 import { 
   Shield, 
   Users, 
-  BookOpen, 
-  Target, 
   Heart, 
   Zap, 
-  AlertTriangle, 
   BarChart3, 
-  Bot, 
   Award, 
   Cross, 
   Eye,
   Timer,
-  MessageCircle
+  MessageCircle,
+  Apple,
+  Chrome as ChromeIcon,
+  Smartphone,
+  Monitor,
+  Bell,
+  BellRing,
+  BookOpen,
+  Camera,
+  Image as ImageIcon,
+  Filter,
+  Search,
+  Activity,
+  Music,
+  Share2,
+  Calendar,
+  CheckCircle
 } from "lucide-react"
 
 const coreFeatures = [
   {
-    icon: AlertTriangle,
-    title: "Panic Button",
-    description: "Instant emergency support to stop urges and regain control when you need it most.",
-    cta: "Emergency Help",
+    icon: Shield,
+    title: "Multi-Platform Protection",
+    description: "Android, iOS, macOS, Windows, and Chrome extension—your devices are covered everywhere you go.",
+    cta: "See Platforms",
     popular: true,
-    category: "Crisis Support"
+    category: "Coverage"
   },
   {
     icon: Eye,
-    title: "Advanced Content Blocker",
-    description: "AI-powered blocking system that closes every loophole and protects your progress 24/7.",
-    cta: "Activate Protection",
+    title: "Secure In‑App Browser",
+    description: "Built‑in safe browser on mobile with filters and accountability—your default way to surf, search, and learn.",
+    cta: "Use Secure Browser",
     popular: true,
     category: "Protection"
   },
   {
-    icon: Users,
-    title: "Accountability Partners",
-    description: "Connect with trusted allies and accountability partners for relationship-based recovery.",
-    cta: "Find Partner",
+    icon: Zap,
+    title: "Social App Lockdown",
+    description: "Blocks direct access to social media apps; use them safely only through the secure browser.",
+    cta: "Configure Apps",
     popular: false,
-    category: "Community"
+    category: "Safeguards"
+  },
+  {
+    icon: Users,
+    title: "Partner Accountability",
+    description: "Invite a partner who gets alerts for tampering, removals, or uninstalls—receives reports and can reset your streak when needed.",
+    cta: "Add a Partner",
+    popular: true,
+    category: "Accountability"
+  },
+  {
+    icon: Camera,
+    title: "Screen Accountability",
+    description: "Discreet screen reviews flag explicit content and summarize activity for your accountability partner.",
+    cta: "Learn How It Works",
+    popular: true,
+    category: "Accountability"
   },
   {
     icon: BarChart3,
-    title: "Progress Dashboard",
-    description: "Comprehensive analytics with streak tracking, patterns analysis, and milestone celebrations.",
+    title: "Progress & Streaks",
+    description: "Track streaks, milestones, and patterns with clear insights to keep momentum strong.",
     cta: "View Progress",
     popular: false,
     category: "Analytics"
   },
   {
-    icon: Bot,
-    title: "AI Support Assistant",
-    description: "24/7 AI-powered guidance through urges, tough moments, and personalized recovery plans.",
-    cta: "Chat Now",
-    popular: true,
-    category: "AI Support"
-  },
-  {
     icon: Cross,
-    title: "Biblical Foundation",
-    description: "Faith-based recovery with scripture, devotionals, and Christian counseling resources.",
-    cta: "Explore Faith",
+    title: "Faith & Devotionals",
+    description: "Daily devotions, prayer reminders, guided fasting, and scripture meditation—Christ‑centered tools for renewal.",
+    cta: "Grow Spiritually",
     popular: false,
     category: "Spiritual"
   }
 ]
 
 const additionalFeatures = [
-  {
-    icon: MessageCircle,
-    title: "Community Forum",
-    description: "Join thousands of believers sharing experiences, victories, and encouragement.",
-    stats: "50,000+ Active Members"
-  },
-  {
-    icon: BookOpen,
-    title: "Educational Content",
-    description: "Science-backed lessons about addiction combined with biblical wisdom.",
-    stats: "100+ Lessons Available"
-  },
-  {
-    icon: Award,
-    title: "Achievement System",
-    description: "Unlock milestones and celebrate victories with our gamified recovery system.",
-    stats: "12 Achievement Levels"
-  },
-  {
-    icon: Timer,
-    title: "21-Day Programs",
-    description: "Structured detox programs for men and women with daily guidance.",
-    stats: "92% Success Rate"
-  },
-  {
-    icon: Heart,
-    title: "Couple Support",
-    description: "Specialized tools for rebuilding trust and healing relationships together.",
-    stats: "Trusted by 100k+ Couples"
-  },
-  {
-    icon: Shield,
-    title: "Family Protection",
-    description: "Comprehensive parental controls and family safety monitoring tools.",
-    stats: "Safe for All Ages"
-  }
+  // Spiritual Tools
+  { icon: BookOpen, title: "Daily Devotions", description: "Scripture readings with reflection prompts and guided prayers." },
+  { icon: Bell, title: "Prayer Reminders", description: "Custom notifications to build steady rhythms of prayer." },
+  { icon: Timer, title: "Fasting Integration", description: "Guided fasting (food or digital) with spiritual insights and tracking." },
+  { icon: Heart, title: "Scripture Meditation", description: "Breathwork paired with relevant verses to renew your mind." },
+
+  // Notifications
+  { icon: Calendar, title: "Verse of the Day", description: "Morning scripture focused on strength and freedom." },
+  { icon: BellRing, title: "Prayer Time Alerts", description: "Scheduled reminders for prayer and reflection." },
+  { icon: CheckCircle, title: "Victory Celebrations", description: "Affirmations from scripture when you hit milestones." },
+
+  // Meditation
+  { icon: Activity, title: "Biblical Breathing", description: "Guided meditations with rhythmic breathing and scripture." },
+  { icon: Music, title: "Worship Integration", description: "Hymn and worship suggestions for quiet time." },
+  { icon: Cross, title: "Contemplative Prayer", description: "Structured silence and traditional Christian practices." },
+
+  // Community & Accountability
+  { icon: MessageCircle, title: "Prayer Requests", description: "Share anonymous requests and pray for others." },
+  { icon: Share2, title: "Scripture Sharing", description: "Share the verses that helped in tough moments." },
+  { icon: Users, title: "Faith-Based Partners", description: "Match with spiritually minded accountability partners." },
+
+  // Protection & Monitoring
+  { icon: Filter, title: "Advanced Filtering", description: "Works across browsers—including private modes and mixed-content sites." },
+  { icon: Search, title: "Content Monitoring", description: "Flags policy violations and summarizes risky activity." },
+  { icon: ImageIcon, title: "Keyword & Image Checks", description: "Detects problematic text and images to prevent slips." },
+  { icon: Activity, title: "Activity Feed & Check-ins", description: "Device usage trail with gentle accountability prompts." },
+
+  // Devices
+  { icon: Monitor, title: "Desktop Apps", description: "Protect macOS and Windows with native apps." },
+  { icon: ChromeIcon, title: "Chrome Extension", description: "Deep page analysis and filtering right in your browser." },
 ]
 
 export default function FeaturesSection() {
@@ -120,9 +134,28 @@ export default function FeaturesSection() {
             Everything You Need to Break Free
           </h2>
           <p className="text-xl text-gray-600 leading-relaxed">
-            Combining proven accountability methods with cutting-edge AI technology and biblical foundation 
-            for lasting freedom from pornography addiction.
+            A complete, faith-centered recovery toolkit: secure browsing, social app safeguards, partner accountability,
+            and biblical resources working together for lasting freedom.
           </p>
+
+          {/* Platform Coverage Badges */}
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
+            <Badge variant="outline" className="gap-2 bg-white text-gray-800 border-gray-200">
+              <Smartphone className="w-4 h-4" /> Android
+            </Badge>
+            <Badge variant="outline" className="gap-2 bg-white text-gray-800 border-gray-200">
+              <Apple className="w-4 h-4" /> iOS
+            </Badge>
+            <Badge variant="outline" className="gap-2 bg-white text-gray-800 border-gray-200">
+              <Apple className="w-4 h-4" /> macOS
+            </Badge>
+            <Badge variant="outline" className="gap-2 bg-white text-gray-800 border-gray-200">
+              <Monitor className="w-4 h-4" /> Windows
+            </Badge>
+            <Badge variant="outline" className="gap-2 bg-white text-gray-800 border-gray-200">
+              <ChromeIcon className="w-4 h-4" /> Chrome Extension
+            </Badge>
+          </div>
         </div>
 
         {/* Core Features Grid */}
@@ -182,9 +215,7 @@ export default function FeaturesSection() {
                 </div>
                 <h4 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h4>
                 <p className="text-gray-600 mb-3 text-sm leading-relaxed">{feature.description}</p>
-                <Badge variant="outline" className="text-xs bg-purple-50 text-purple-700 border-purple-200">
-                  {feature.stats}
-                </Badge>
+                {/* Optional stats removed to avoid numeric claims */}
               </div>
             ))}
           </div>
@@ -197,7 +228,7 @@ export default function FeaturesSection() {
               Ready to Start Your Journey to Freedom?
             </h3>
             <p className="text-lg mb-8 opacity-90 max-w-2xl mx-auto">
-              Join over 1.7 million people who have found freedom with our comprehensive recovery platform.
+              Get started with a complete accountability and protection toolkit built for lasting freedom.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" variant="secondary" className="bg-white text-purple-600 hover:bg-gray-50">

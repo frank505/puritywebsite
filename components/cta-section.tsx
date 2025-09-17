@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Download, Smartphone, Shield, Users, Heart } from "lucide-react"
+import { Download, Smartphone, Shield, Users, Heart, Apple, Monitor, Chrome as ChromeIcon } from "lucide-react"
 
 export default function CTASection() {
   return (
@@ -33,7 +33,7 @@ export default function CTASection() {
             <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
               <Users className="w-8 h-8 text-pink-400 mx-auto mb-2" />
               <h3 className="text-white font-semibold mb-1">Community</h3>
-              <p className="text-gray-300 text-sm">623K+ active members</p>
+              <p className="text-gray-300 text-sm">Strong, supportive community</p>
             </div>
             <div className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
               <Heart className="w-8 h-8 text-blue-400 mx-auto mb-2" />
@@ -42,12 +42,12 @@ export default function CTASection() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex flex-wrap gap-4 justify-center mb-8">
             <Button
               size="lg"
               className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-8 py-4 text-lg group"
             >
-              <Download className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+              <Apple className="w-5 h-5 mr-2 group-hover:animate-bounce" />
               Download for iOS
             </Button>
             <Button
@@ -56,6 +56,30 @@ export default function CTASection() {
             >
               <Smartphone className="w-5 h-5 mr-2 group-hover:animate-bounce" />
               Download for Android
+            </Button>
+            <Button
+              size="lg"
+              variant="secondary"
+              className="bg-white text-purple-700 hover:bg-gray-50 font-semibold px-8 py-4 text-lg group"
+            >
+              <Apple className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+              Download for macOS
+            </Button>
+            <Button
+              size="lg"
+              variant="secondary"
+              className="bg-white text-purple-700 hover:bg-gray-50 font-semibold px-8 py-4 text-lg group"
+            >
+              <Monitor className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+              Download for Windows
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-white text-white hover:bg-white hover:text-purple-700 font-semibold px-8 py-4 text-lg group"
+            >
+              <ChromeIcon className="w-5 h-5 mr-2 group-hover:animate-bounce" />
+              Add Chrome Extension
             </Button>
           </div>
 

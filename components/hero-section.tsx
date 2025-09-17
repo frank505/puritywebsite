@@ -35,10 +35,7 @@ export function HeroSection() {
                 <div className="text-2xl mb-1">🚨</div>
                 <div className="text-xs text-gray-300">Panic Button</div>
               </div>
-              <div className="text-center p-3 bg-white/5 rounded-xl border border-white/10">
-                <div className="text-2xl mb-1">🤖</div>
-                <div className="text-xs text-gray-300">AI Support</div>
-              </div>
+              
               <div className="text-center p-3 bg-white/5 rounded-xl border border-white/10">
                 <div className="text-2xl mb-1">👥</div>
                 <div className="text-xs text-gray-300">Community</div>
@@ -49,7 +46,7 @@ export function HeroSection() {
               </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
               <a 
                 href="#" 
                 className="transition-transform hover:scale-105"
@@ -75,6 +72,28 @@ export function HeroSection() {
                   height={48}
                   className="h-12 w-auto"
                 />
+              </a>
+              {/* Desktop & Extension Buttons */}
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105"
+                aria-label="Download for macOS"
+              >
+                <Button variant="secondary" className="h-12 px-4">Download for macOS</Button>
+              </a>
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105"
+                aria-label="Download for Windows"
+              >
+                <Button variant="secondary" className="h-12 px-4">Download for Windows</Button>
+              </a>
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105"
+                aria-label="Get Chrome Extension"
+              >
+                <Button variant="outline" className="h-12 px-4">Add Chrome Extension</Button>
               </a>
             </div>
           </div>

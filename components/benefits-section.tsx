@@ -69,14 +69,14 @@ export default function BenefitsSection() {
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-6 py-6">
+      <div className="grid grid-cols-3 gap-6 py-6">
               <div className="text-center">
                 <div className="text-3xl font-bold text-purple-400">92%</div>
                 <div className="text-sm text-gray-400">Success Rate</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-pink-400">1.7M+</div>
-                <div className="text-sm text-gray-400">Lives Changed</div>
+        <div className="text-3xl font-bold text-pink-400">Faith-Focused</div>
+        <div className="text-sm text-gray-400">Christ-centered guidance</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-bold text-blue-400">84%</div>
@@ -85,7 +85,7 @@ export default function BenefitsSection() {
             </div>
 
             {/* Download Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-wrap gap-4">
               <a 
                 href="#" 
                 className="transition-transform hover:scale-105"
@@ -111,6 +111,27 @@ export default function BenefitsSection() {
                   height={42}
                   className="h-10 w-auto"
                 />
+              </a>
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105"
+                aria-label="Download for macOS"
+              >
+                <button className="h-10 px-3 rounded-md bg-white/10 border border-white/20 text-white text-sm">Download for macOS</button>
+              </a>
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105"
+                aria-label="Download for Windows"
+              >
+                <button className="h-10 px-3 rounded-md bg-white/10 border border-white/20 text-white text-sm">Download for Windows</button>
+              </a>
+              <a 
+                href="#" 
+                className="transition-transform hover:scale-105"
+                aria-label="Get Chrome Extension"
+              >
+                <button className="h-10 px-3 rounded-md bg-white/10 border border-white/20 text-white text-sm">Add Chrome Extension</button>
               </a>
             </div>
           </div>
