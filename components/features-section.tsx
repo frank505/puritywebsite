@@ -56,24 +56,24 @@ const coreFeatures = [
   },
   {
     icon: Users,
-    title: "Partner Accountability",
-    description: "Invite a partner who gets alerts for tampering, removals, or uninstalls—receives reports and can reset your streak when needed.",
+    title: "Partnership Accountability",
+    description: "Invite a partner who gets alerts for tampering, removals, or uninstalls—receives reports and can reset your progress when needed.",
     cta: "Add a Partner",
     popular: true,
-    category: "Accountability"
+    category: "Partnership"
   },
   {
     icon: Camera,
     title: "Screen Accountability",
-    description: "Discreet screen reviews flag explicit content and summarize activity for your accountability partner.",
+    description: "Discreet screen reviews flag explicit content and summarize activity for your partnership support.",
     cta: "Learn How It Works",
     popular: true,
-    category: "Accountability"
+    category: "Partnership"
   },
   {
     icon: BarChart3,
-    title: "Progress & Streaks",
-    description: "Track streaks, milestones, and patterns with clear insights to keep momentum strong.",
+    title: "Progress & Insights",
+    description: "Track milestones and patterns with clear insights to keep momentum strong.",
     cta: "View Progress",
     popular: false,
     category: "Analytics"
@@ -105,16 +105,16 @@ const additionalFeatures = [
   { icon: Music, title: "Worship Integration", description: "Hymn and worship suggestions for quiet time." },
   { icon: Cross, title: "Contemplative Prayer", description: "Structured silence and traditional Christian practices." },
 
-  // Community & Accountability
+  // Community & Partnership
   { icon: MessageCircle, title: "Prayer Requests", description: "Share anonymous requests and pray for others." },
   { icon: Share2, title: "Scripture Sharing", description: "Share the verses that helped in tough moments." },
-  { icon: Users, title: "Faith-Based Partners", description: "Match with spiritually minded accountability partners." },
+  { icon: Users, title: "Faith-Based Partners", description: "Match with spiritually minded partnership support." },
 
   // Protection & Monitoring
   { icon: Filter, title: "Advanced Filtering", description: "Works across browsers—including private modes and mixed-content sites." },
   { icon: Search, title: "Content Monitoring", description: "Flags policy violations and summarizes risky activity." },
   { icon: ImageIcon, title: "Keyword & Image Checks", description: "Detects problematic text and images to prevent slips." },
-  { icon: Activity, title: "Activity Feed & Check-ins", description: "Device usage trail with gentle accountability prompts." },
+  { icon: Activity, title: "Activity Feed & Check-ins", description: "Device usage trail with gentle partnership prompts." },
 
   // Devices
   { icon: Monitor, title: "Desktop Apps", description: "Protect macOS and Windows with native apps." },
@@ -128,13 +128,13 @@ export default function FeaturesSection() {
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto mb-20">
           <Badge variant="outline" className="mb-4 bg-purple-50 text-purple-700 border-purple-200">
-            Complete Recovery Solution
+            Complete Recovery Ecosystem
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Everything You Need to Break Free
           </h2>
           <p className="text-xl text-gray-600 leading-relaxed">
-            A complete, faith-centered recovery toolkit: secure browsing, social app safeguards, partner accountability,
+            A complete, faith-centered recovery ecosystem: secure browsing, social app safeguards, partner accountability,
             and biblical resources working together for lasting freedom.
           </p>
 
@@ -200,10 +200,10 @@ export default function FeaturesSection() {
         <div className="bg-white rounded-3xl p-8 md:p-12 shadow-lg border border-gray-100">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-gray-900 mb-4">
-              Complete Recovery Ecosystem
+              Essential Recovery Tools
             </h3>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Additional tools and resources designed to support every aspect of your recovery journey.
+              Spiritual practices, protection technology, and partnership support designed for every aspect of your journey.
             </p>
           </div>
           
